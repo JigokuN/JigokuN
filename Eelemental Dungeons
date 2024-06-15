@@ -73,7 +73,6 @@ function MainScript()
         dungeonsettings:AddParagraph({Title = "Enable 'Auto Load' in Misc Tab for automatic loading!"})
     
         local AutoNextDungeonToggle = dungeonsettings:AddToggle("AutoNextDungeon", {Title = "Auto Next Difficulty", Default = Settings.AutoNextDungeon or false })
-
         AutoNextDungeonToggle:OnChanged(function()
             Settings.AutoNextDungeon = AutoNextDungeonToggle.Value
             saveSettings()
