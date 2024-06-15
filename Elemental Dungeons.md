@@ -154,12 +154,8 @@ function MainScript()
     Settings.DungeonName = newValue
     saveSettings()
 end)    
-        DungeonNameDropdown:OnChanged(function(Value)
-            Settings.DungeonName = Value
-            saveSettings()
-        end)
-    
-        local DungeonDifficultyDropdown = dungeonsettings:AddDropdown("DungeonDifficulty", {
+
+	local DungeonDifficultyDropdown = dungeonsettings:AddDropdown("DungeonDifficulty", {
             Title = "Choose Difficulty",
             Values = {"Easy", "Medium", "Hard", "Hell", "Hardcore", "Infinite"},
             Multi = false,
