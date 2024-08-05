@@ -1,14 +1,14 @@
+--- opensourced cause yall wont stop crying lol
 
 local version = "v2.3"
 
 repeat task.wait() until game:IsLoaded()
 repeat task.wait() until game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name)
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-repeat task.wait() until ReplicatedStorage:FindFirstChild("Packages"):FindFirstChild("Knit")
+repeat task.wait() until game:GetService("ReplicatedStorage"):FindFirstChild("ReplicatedStorage"):FindFirstChild("Packages"):FindFirstChild("Knit")
 
 ------Save Configuration------
 ------------------------------
-local a = 'Jigoku' -- 
+local a = 'Janina' -- 
 local b = game:GetService('Players').LocalPlayer.Name .. '_ElementalDungeon.json' 
 Settings = {}
 function saveSettings()
@@ -43,7 +43,7 @@ function MainScript()
     local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/xpa1n/library/main/FluentLibrary.lua"))()
 
     local Window = Fluent:CreateWindow({
-        Title = "Jigoku Hub | Elemental Dungeons ",
+        Title = "Janina Hub | Elemental Dungeons ",
         SubTitle = version,
         TabWidth = 160,
         Size = UDim2.fromOffset(580, 460),
@@ -69,17 +69,16 @@ function MainScript()
         local RunService = game:GetService("RunService")
 
         local dungeonsettings = Tabs.dungeon:AddSection("Dungeon Settings")
-
-        dungeonsettings:AddParagraph({Title = "Enable 'Auto Load' in Misc Tab for automatic loading!"})
     
         local AutoNextDungeonToggle = dungeonsettings:AddToggle("AutoNextDungeon", {Title = "Auto Next Difficulty", Default = Settings.AutoNextDungeon or false })
+
         AutoNextDungeonToggle:OnChanged(function()
             Settings.AutoNextDungeon = AutoNextDungeonToggle.Value
             saveSettings()
         end)
         
         coroutine.resume(coroutine.create(function()
-            while task.wait(5) do  -- Adjusted wait time to reduce CPU usage
+            while task.wait() do
                 if Settings.AutoNextDungeon and (Settings.AutoRetry == false or Settings.AutoRetry == nil) then
                     autonextdungeonfunction()
                 end
@@ -113,33 +112,74 @@ function MainScript()
                 local level = tonumber(string.match(levelText, "%d+"))
                 
                 if level then
-                        local function startDungeon(level)
-                            local dungeonSettings = {
-                                {min = 0, max = 4, args = {"BeginnersDungeon", "Medium", "Private", "Normal"}},                    
-                                {min = 5, max = 9, args = {"JungleDungeon", "Medium", "Private", "Normal"}},
-                                {min = 10, max = 14, args = {"ArcticBastionDungeon", "Medium", "Private", "Normal"}},
-                                {min = 15, max = 19, args = {"UnderwaterDungeon", "Medium", "Private", "Normal"}},
-                                {min = 20, max = 24, args = {"FireDungeon", "Medium", "Private", "Normal"}},
-                            }
-
-                            for _, setting in ipairs(dungeonSettings) do
-                                if level >= setting.min and level <= setting.max then
-                                    game:GetService("ReplicatedStorage").Packages.Knit.Services.PartyService.RF.CreateParty:InvokeServer(unpack(setting.args))
-                                    break
-                                end 
-                            end
-                       end
+                        if level >= 0 and level <= 4 then
+                            local args = {[1] = "BeginnersDungeon",[2] = "Medium",[3] = "Private",[4] = "Normal"}                    
+                            game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.PartyService.RF.CreateParty:InvokeServer(unpack(args))                    
+                        elseif level >= 5 and level <= 14 then
+                            local args = {[1] = "BeginnersDungeon",[2] = "Hard",[3] = "Private",[4] = "Normal"}                    
+                            game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.PartyService.RF.CreateParty:InvokeServer(unpack(args))                                    
+                        elseif level >= 15 and level <= 34 then
+                            local args = {[1] = "BeginnersDungeon",[2] = "Hell",[3] = "Private",[4] = "Normal"}                    
+                            game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.PartyService.RF.CreateParty:InvokeServer(unpack(args))
+                        elseif level >= 35 and level <= 44 then
+                            local args = {[1] = "JungleDungeon",[2] = "Medium",[3] = "Private",[4] = "Normal"}                    
+                            game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.PartyService.RF.CreateParty:InvokeServer(unpack(args))
+                        elseif level >= 45 and level <= 54 then
+                            local args = {[1] = "JungleDungeon",[2] = "Hard",[3] = "Private",[4] = "Normal"}                    
+                            game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.PartyService.RF.CreateParty:InvokeServer(unpack(args))
+                        elseif level >= 55 and level <= 74 then
+                            local args = {[1] = "JungleDungeon",[2] = "Hell",[3] = "Private",[4] = "Normal"}                    
+                            game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.PartyService.RF.CreateParty:InvokeServer(unpack(args))
+                        elseif level >= 75 and level <= 84 then
+                            local args = {[1] = "ArcticBastionDungeon",[2] = "Easy",[3] = "Private",[4] = "Normal"}                    
+                            game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.PartyService.RF.CreateParty:InvokeServer(unpack(args))
+                        elseif level >= 85 and level <= 94 then
+                            local args = {[1] = "ArcticBastionDungeon",[2] = "Medium",[3] = "Private",[4] = "Normal"}                    
+                            game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.PartyService.RF.CreateParty:InvokeServer(unpack(args))
+                        elseif level >= 95 and level <= 104 then                               
+                            local args = {[1] = "ArcticBastionDungeon",[2] = "Hard",[3] = "Private",[4] = "Normal"}                 
+                            game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.PartyService.RF.CreateParty:InvokeServer(unpack(args))
+                        elseif level >= 105 and level <= 119 then                               
+                            local args = {[1] = "ArcticBastionDungeon",[2] = "Hell",[3] = "Private",[4] = "Normal"}                    
+                            game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.PartyService.RF.CreateParty:InvokeServer(unpack(args))
+                        elseif level >= 120 and level <= 129 then                               
+                            local args = {[1] = "UnderwaterDungeon",[2] = "Easy",[3] = "Private",[4] = "Normal"}                    
+                            game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.PartyService.RF.CreateParty:InvokeServer(unpack(args))
+                        elseif level >= 130 and level <= 139 then                               
+                            local args = {[1] = "UnderwaterDungeon",[2] = "Medium",[3] = "Private",[4] = "Normal"}                    
+                            game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.PartyService.RF.CreateParty:InvokeServer(unpack(args))
+                        elseif level >= 140 and level <= 149 then                               
+                            local args = {[1] = "UnderwaterDungeon",[2] = "Hard",[3] = "Private",[4] = "Normal"}                    
+                            game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.PartyService.RF.CreateParty:InvokeServer(unpack(args))
+                        elseif level >= 150 and level <= 169 then                               
+                            local args = {[1] = "UnderwaterDungeon",[2] = "Hell",[3] = "Private",[4] = "Normal"}                    
+                            game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.PartyService.RF.CreateParty:InvokeServer(unpack(args))
+                        elseif level >= 170 and level <= 184 then             
+                            local args = {[1] = "FireDungeon",[2] = "Medium",[3] = "Private",[4] = "Normal"}                    
+                            game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.PartyService.RF.CreateParty:InvokeServer(unpack(args))
+                        elseif level >= 185 and level <= 199 then             
+                            local args = {[1] = "FireDungeon",[2] = "Hard",[3] = "Private",[4] = "Normal"}                    
+                            game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.PartyService.RF.CreateParty:InvokeServer(unpack(args))
+                        elseif level >= 200 then
+                            local args = {[1] = "FireDungeon",[2] = "Hell",[3] = "Private",[4] = "Normal"}                    
+                            game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.PartyService.RF.CreateParty:InvokeServer(unpack(args))
+                        else
+                            print("Unknown level")
+                        end
+                    else
+                end
                 wait()
                 local BUTTONPATH = game:GetService("Players").LocalPlayer.PlayerGui.Party.Main.AllStuffFrame.PartyMenu.Start
                 if BUTTONPATH then
                     local connections = getconnections(BUTTONPATH.Activated)                        
                     for _, connection in pairs(connections) do
                         connection.Function(BUTTONPATH)
-                   end
-              else
-                   warn("Button not found")
-              end
-
+                    end
+                else
+                    warn("Button not found")
+                end  
+            end)
+        end
 
         local DungeonNameDropdown = dungeonsettings:AddDropdown("DungeonName", {
             Title = "Choose Dungeon",
@@ -147,13 +187,13 @@ function MainScript()
             Multi = false,
             Default = Settings.DungeonName or "",
         })
-
-         DungeonNameDropdown.OnValueChanged:Connect(function(newValue)
-    Settings.DungeonName = newValue
-    saveSettings()
-end)    
-
-	local DungeonDifficultyDropdown = dungeonsettings:AddDropdown("DungeonDifficulty", {
+    
+        DungeonNameDropdown:OnChanged(function(Value)
+            Settings.DungeonName = Value
+            saveSettings()
+        end)
+    
+        local DungeonDifficultyDropdown = dungeonsettings:AddDropdown("DungeonDifficulty", {
             Title = "Choose Difficulty",
             Values = {"Easy", "Medium", "Hard", "Hell", "Hardcore", "Infinite"},
             Multi = false,
@@ -644,50 +684,51 @@ end)
             end
         end))
     
-        function AutoHeal()
-            pcall(function()
-                local plr = game.Players.LocalPlayer
-                local character = plr.Character
-                local amount = plr.PlayerGui.Main.PlayerBar.Main.PotionBar.Amount.Text
-                local bar = game:GetService("Players").LocalPlayer.PlayerGui.Main.PlayerBar.Main.PotionBar
-                if character and character:FindFirstChild("HumanoidRootPart") then
-                    local humanoidRootPart = character.HumanoidRootPart
-                    local inventory = game:GetService("Players").LocalPlayer.PlayerGui.Inventory.Main.InventoryFrame.ItemsStored.Text
-                    for i, v in pairs(game:GetService("Workspace").Camera.Drops:GetChildren()) do
-                        if v:IsA("Model") and v.Name == "Drop" and v:FindFirstChild("Potion") then
-                            if v:FindFirstChild("Center") then
-                                if v.Center:FindFirstChild("ProximityPrompt") then
-                                    if amount == "2/2" and bar.Visible == true then
-                                    else
-                                            humanoidRootPart.CFrame = v.Center.CFrame
-                                            local start = tick()
-                                            repeat task.wait()
-                                                humanoidRootPart.CFrame = v.Center.CFrame
-                                                    fireproximityprompt(v.Center.ProximityPrompt)
-                                            until (tick() - start) >= 5 or not v.Center.ProximityPrompt.Enabled
-                                    end
-                                end
+function AutoHeal()
+    pcall(function()
+        local plr = game.Players.LocalPlayer
+        local character = plr.Character
+        local amount = plr.PlayerGui.Main.PlayerBar.Main.PotionBar.Amount.Text
+        local bar = game:GetService("Players").LocalPlayer.PlayerGui.Main.PlayerBar.Main.PotionBar
+        if character and character:FindFirstChild("HumanoidRootPart") then
+            local humanoidRootPart = character.HumanoidRootPart
+            local inventory = game:GetService("Players").LocalPlayer.PlayerGui.Inventory.Main.InventoryFrame.ItemsStored.Text
+            for i, v in pairs(game:GetService("Workspace").Camera.Drops:GetChildren()) do
+                if v:IsA("Model") and v.Name == "Drop" and v:FindFirstChild("Potion") then
+                    if v:FindFirstChild("Center") then
+                        if v.Center:FindFirstChild("ProximityPrompt") then
+                            if amount == "2/2" and bar.Visible == true then
+                                -- Tüm iksirler zaten doluysa, hiçbir şey yapma
+                            else
+                                humanoidRootPart.CFrame = v.Center.CFrame
+                                local start = tick()
+                                repeat task.wait()
+                                    humanoidRootPart.CFrame = v.Center.CFrame
+                                    fireproximityprompt(v.Center.ProximityPrompt)
+                                until (tick() - start) >= 5 or not v.Center.ProximityPrompt.Enabled
                             end
                         end
                     end
                 end
-            end)
-            pcall(function()
-                local plr = game.Players.LocalPlayer
-                local character = plr.Character
-                local humanoid = character:FindFirstChild("Humanoid")
-                local currentHealth = humanoid.Health
-                local maxHealth = humanoid.MaxHealth
-                local healthPercentage = currentHealth / maxHealth
-                local HealHealth = gghealhp * 0.01
-    
-                if healthPercentage < HealHealth then
-                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.PlayerBar.Main.PotionBar.Visible then
-                        game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.HealingService.RF.UseHeal:InvokeServer()
-                    end
-                end
-            end)
+            end
         end
+    end)
+    pcall(function()
+        local plr = game.Players.LocalPlayer
+        local character = plr.Character
+        local humanoid = character:FindFirstChild("Humanoid")
+        local currentHealth = humanoid.Health
+        local maxHealth = humanoid.MaxHealth
+        local healthPercentage = currentHealth / maxHealth
+        local HealHealth = gghealhp * 0.01
+
+        if healthPercentage < HealHealth then
+            if game:GetService("Players").LocalPlayer.PlayerGui.Main.PlayerBar.Main.PotionBar.Visible then
+                game:GetService("ReplicatedStorage").ReplicatedStorage.Packages.Knit.Services.HealingService.RF.UseHeal:InvokeServer()
+            end
+        end
+    end)
+end
 
         local HealAtSlider = healsettings:AddSlider("HealAtSlider", {
             Title = "Heal When Hp Is Under (%)",
@@ -836,34 +877,43 @@ end)
             end
         end))
 
-        local AutoDodge2 = bosssettings:AddToggle("AutoDodge2", {Title = "Auto Dodge Boss Rage", Default = Settings.AutoDodgeSkillRage or false})
+local AutoDodge2 = bosssettings:AddToggle("AutoDodge2", {Title = "Auto Dodge Boss Rage", Default = Settings.AutoDodgeSkillRage or false})
 
-        AutoDodge2:OnChanged(function()
-            Settings.AutoDodgeSkillRage = AutoDodge2.Value
-            saveSettings()
-        end)
-        
-        function AutoDodgeBossR()
-            pcall(function() 
-                while Settings.AutoDodgeSkillRage do
-                    local char = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-                    local originalpos = CFrame.new(0,0,0)
-                    originalpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+AutoDodge2:OnChanged(function()
+    Settings.AutoDodgeSkillRage = AutoDodge2.Value
+    saveSettings()
+end)
 
-                    local skillfolder = game:GetService("Workspace").Effects
-                    while skillfolder:FindFirstChild("EngragedExplosion") do
-                        task.wait()
-                        if char then
-                        char.CFrame = CFrame.new(100, 100, 100)
-                        end
-                    end
-                    if char then
-                    char.CFrame = originalpos
-                    end
-                    break
+function AutoDodgeBossR()
+    pcall(function()
+        while Settings.AutoDodgeSkillRage do
+            local char = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+            local originalpos = CFrame.new(0, 0, 0)
+            if char then
+                originalpos = char.CFrame
+            end
+
+            local skillfolder = game:GetService("Workspace").Effects
+            while skillfolder:FindFirstChild("EngragedExplosion") do
+                task.wait()
+                if char then
+                    char.CFrame = CFrame.new(100, 100, 100)
                 end
-            end)
+            end
+            if char then
+                char.CFrame = originalpos
+            end
         end
+    end)
+end
+
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if Settings.AutoDodgeSkillRage and (Settings.Nearest == false or Settings.Nearest == nil) then
+            AutoDodgeBossR()
+        end
+    end
+end))
 
         coroutine.resume(coroutine.create(function()
             while task.wait() do
@@ -2065,23 +2115,7 @@ end)
         end))
 
         local loadsection = Tabs.misc:AddSection("Load")
-
-        function autoloadscript()
-            queue_on_teleport("repeat task.wait() until game:IsLoaded() print('aaaaaaaaaaaaaaaaaaaaa') task.wait(2) loadstring(game:HttpGet('https://raw.githubusercontent.com/xpa1n/Scripts/main/ElementalDungeons.lua'))()")
-        end
     
-        coroutine.resume(coroutine.create(function() 
-            if Settings.autoload then autoloadscript() end
-        end))
-
-        local autoloadscripttoggle = loadsection:AddToggle("autoloadscripttoggle", {Title = "Auto Load Script", Default = Settings.autoload or false})
-
-        autoloadscripttoggle:OnChanged(function()
-            Settings.autoload = autoloadscripttoggle.Value
-            saveSettings()
-            if Settings.autoload then autoloadscript() end
-        end)
-
         function autoreifkicked()
             pcall(function()
                 local lp,po,ts = game:GetService('Players').LocalPlayer,game.CoreGui.RobloxPromptGui.promptOverlay,game:GetService('TeleportService')
@@ -2679,8 +2713,7 @@ end)
 
     end ---------- (THE END OF DO)
 
-    Fluent:Notify({Title = "Jigoku
-    Hub", Content = "The script has been loaded.", Duration = 4})
+    Fluent:Notify({Title = "Janina Hub", Content = "The script has been loaded.", Duration = 4})
 
     Window:SelectTab(1)
     print'Script Loaded!'
@@ -2713,8 +2746,7 @@ if game:GetService("CoreGui"):FindFirstChild("ScreenGui") then
 elseif not game:GetService("CoreGui"):FindFirstChild("ScreenGui") and canOpenUI() then
     repeat task.wait() until game:IsLoaded()
     repeat task.wait() until game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name)
-    local ReplicatedStorage = game:GetService("ReplicatedStorage")
-    repeat task.wait() until ReplicatedStorage:FindFirstChild("Packages"):FindFirstChild("Knit")
+    repeat task.wait() until game:GetService("ReplicatedStorage"):FindFirstChild("ReplicatedStorage"):FindFirstChild("Packages"):FindFirstChild("Knit")
     _G.LastOpenTime = tick()
     keychecker()
 end
